@@ -19,10 +19,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfig implements WebMvcConfigurer {
 
     // TODO: 2. 인가에 대한 이해
+    //사용하기 위해 인증 필요
     private static final String[] AUTH_REQUIRED_PATH_PATTERNS = {"/users/logout", "/admins/*", "/items/*"};
+    //user 권한 필요
     private static final String[] USER_ROLE_REQUIRED_PATH_PATTERNS = {"/reservations/*"};
 
+    //로그인 여부
     private final AuthInterceptor authInterceptor;
+    //user 권한 확인
     private final UserRoleInterceptor userRoleInterceptor;
 
     @Override
