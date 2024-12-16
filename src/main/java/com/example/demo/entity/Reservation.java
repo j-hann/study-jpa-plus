@@ -25,7 +25,7 @@ public class Reservation {
 
     private LocalDateTime endAt;
 
-    private String status; // PENDING, APPROVED, CANCELED, EXPIRED
+    private String status; // PENDING(대기), APPROVED(승인), CANCELED(취소), EXPIRED(만료)
 
     public Reservation(Item item, User user, String status, LocalDateTime startAt, LocalDateTime endAt) {
         this.item = item;
