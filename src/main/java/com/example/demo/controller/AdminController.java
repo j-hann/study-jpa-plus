@@ -13,6 +13,7 @@ public class AdminController {
         this.adminService = adminService;
     }
 
+
     @PostMapping("/report-users")
     public void reportUsers(@RequestBody ReportRequestDto reportRequestDto) {
         adminService.reportUsers(reportRequestDto.getUserIds());
