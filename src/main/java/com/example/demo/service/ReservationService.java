@@ -9,6 +9,7 @@ import com.example.demo.exception.ReservationConflictException;
 import com.example.demo.repository.ItemRepository;
 import com.example.demo.repository.ReservationRepository;
 import com.example.demo.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,7 +17,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-
+@Slf4j
 @Service
 public class ReservationService {
     private final ReservationRepository reservationRepository;
@@ -50,13 +51,15 @@ public class ReservationService {
         Reservation reservation = new Reservation(item, user, "PENDING", startAt, endAt);
         Reservation savedReservation = reservationRepository.save(reservation);
 
-        RentalLog rentalLog = new RentalLog(savedReservation, "로그 메세지", "CREATE");
-        rentalLogService.save(rentalLog);
+//        RentalLog rentalLog = new RentalLog(savedReservation, "로그 메세지", "CREATE");
+//        rentalLogService.save(rentalLog);
     }
 
     // TODO: 3. N+1 문제
+    //모든 예약 조회
     public List<ReservationResponseDto> getReservations() {
-        List<Reservation> reservations = reservationRepository.findAll();
+//        List<Reservation> reservations = reservationRepository.findAll();
+        List<Reservation> reservations = reservationRepository.findAllWithDetails();
 
         return reservations.stream().map(reservation -> {
             User user = reservation.getUser();

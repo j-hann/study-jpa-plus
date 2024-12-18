@@ -26,6 +26,7 @@ public class ReservationController {
         reservationService.updateReservationStatus(id, status);
     }
 
+    //예약 전체 조회
     @GetMapping
     public void findAll() {
         reservationService.getReservations();

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
@@ -28,4 +27,12 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
             @Param("startAt") LocalDateTime startAt,
             @Param("endAt") LocalDateTime endAt
     );
+
+    //모든 예약 조회
+    @Query("SELECT DISTINCT r FROM Reservation r "
+        + "JOIN FETCH r.user u "
+        + "JOIN FETCH r.item i "
+        + "JOIN FETCH i.owner o "
+        + "JOIN FETCH i.manager m")
+    List<Reservation> findAllWithDetails();
 }
