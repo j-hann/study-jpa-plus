@@ -4,7 +4,6 @@ import com.example.demo.enums.ReservationStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -27,19 +26,19 @@ public class Reservation {
     private LocalDateTime endAt;
 
     @Enumerated(value = EnumType.STRING)
-    private ReservationStatus status; // PENDING(대기), APPROVED(승인), CANCELED(취소), EXPIRED(만료)
+    private ReservationStatus reservationStatus; // PENDING(대기), APPROVED(승인), CANCELED(취소), EXPIRED(만료)
 
-    public Reservation(Item item, User user, ReservationStatus status, LocalDateTime startAt, LocalDateTime endAt) {
+    public Reservation(Item item, User user, ReservationStatus reservationStatus, LocalDateTime startAt, LocalDateTime endAt) {
         this.item = item;
         this.user = user;
-        this.status = status;
+        this.reservationStatus = reservationStatus;
         this.startAt = startAt;
         this.endAt = endAt;
     }
 
     public Reservation() {}
 
-    public void updateStatus(ReservationStatus status) {
-        this.status = status;
+    public void updateStatus(ReservationStatus reservationStatus) {
+        this.reservationStatus = reservationStatus;
     }
 }
