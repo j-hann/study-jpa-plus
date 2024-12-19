@@ -34,8 +34,10 @@ public class ReservationService {
         this.rentalLogService = rentalLogService;
     }
 
+    /**
+     * 예약 생성 API
+     */
     // TODO: 1. 트랜잭션 이해
-    //예약 생성
     @Transactional
     public void createReservation(Long itemId, Long userId, LocalDateTime startAt, LocalDateTime endAt) {
         // 쉽게 데이터를 생성하려면 아래 유효성검사 주석 처리
@@ -54,8 +56,10 @@ public class ReservationService {
 //        rentalLogService.save(rentalLog);
     }
 
+    /**
+     * 모든 예약 조회 API
+     */
     // TODO: 3. N+1 문제
-    //모든 예약 조회
     public List<ReservationResponseDto> getReservations() {
 //        List<Reservation> reservations = reservationRepository.findAll();
         List<Reservation> reservations = reservationRepository.findAllWithDetails();
@@ -74,6 +78,9 @@ public class ReservationService {
         }).toList();
     }
 
+    /**
+     * 조건별 예약 조회 API
+     */
     // TODO: 5. QueryDSL 검색 개선
     public List<ReservationResponseDto> searchAndConvertReservations(Long userId, Long itemId) {
 
@@ -111,6 +118,9 @@ public class ReservationService {
                 .toList();
     }
 
+    /**
+     * 예약 상태 업데이트 API
+     */
     // TODO: 7. 리팩토링
     @Transactional
     public ReservationResponseDto updateReservationStatus(Long reservationId, String reservationStatus) {

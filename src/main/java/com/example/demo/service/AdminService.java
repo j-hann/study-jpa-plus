@@ -17,8 +17,10 @@ public class AdminService {
         this.userRepository = userRepository;
     }
 
+    /**
+     * 사용자 신고 API
+     */
     // TODO: 4. find or save 예제 개선
-    //사용자 신고 기능
     @Transactional
     public void reportUsers(List<Long> userIds) {
 

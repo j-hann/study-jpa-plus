@@ -13,7 +13,9 @@ public class AdminController {
         this.adminService = adminService;
     }
 
-
+    /**
+     * 사용자 신고 API
+     */
     @PostMapping("/report-users")
     public void reportUsers(@RequestBody ReportRequestDto reportRequestDto) {
         adminService.reportUsers(reportRequestDto.getUserIds());
