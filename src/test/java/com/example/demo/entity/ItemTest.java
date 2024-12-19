@@ -41,7 +41,12 @@ class ItemTest {
 		//then - 테스트 결과 검증
 //		assertThrows(예상하는 예외처리 클래스, 예외처리가 터질 로직)
 		assertThrows(ConstraintViolationException.class, () -> {
-			itemRepository.save(item);
+			//save 사용
+//			itemRepository.save(item);
+
+			//saveAndFlush 사용 -> DB에 바로 즉시 저장됨
+			itemRepository.saveAndFlush(item);
+
 		});
 
 	}
