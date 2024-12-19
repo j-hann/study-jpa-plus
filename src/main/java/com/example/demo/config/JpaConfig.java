@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @RequiredArgsConstructor
-public class JPAConfig {
+public class JpaConfig {
 	private final EntityManager entityManager;
 
 	//QueryDSL 사용하기 위한 공장

@@ -1,8 +1,8 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 
 
@@ -27,6 +27,7 @@ public class Item {
     @JoinColumn(name = "manager_id")
     private User manager;
 
+    @NotNull
     @Column(columnDefinition = "varchar(20) default 'PENDING'")
     private String status;
 
