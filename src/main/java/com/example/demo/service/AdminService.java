@@ -24,16 +24,8 @@ public class AdminService {
     @Transactional
     public void reportUsers(List<Long> userIds) {
 
-//        for (Long userId : userIds) {
-//            User user = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("해당 ID에 맞는 값이 존재하지 않습니다."));
-//
-//            user.updateStatusToBlocked();
-//
-//            userRepository.save(user);
-//        }
-
         //요청받은 유저 list 상태 업데이트
-        int updateStatusUser = userRepository.findByIdInAndsUpdateStatus(userIds);
+        int updateStatusUser = userRepository.updateStatusToBlocked(userIds);
 
         if (updateStatusUser == 0){
             throw new IllegalArgumentException("해당 ID에 맞는 값이 존재하지 않습니다.");
