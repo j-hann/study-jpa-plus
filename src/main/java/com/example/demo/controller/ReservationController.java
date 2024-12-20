@@ -5,6 +5,7 @@ import com.example.demo.dto.ReservationResponseDto;
 import com.example.demo.dto.ReservationUpdateRequestDto;
 import com.example.demo.enums.ReservationStatus;
 import com.example.demo.service.ReservationService;
+import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -51,8 +52,10 @@ public class ReservationController {
      * 예약 전체 조회 API
      */
     @GetMapping
-    public void findAll() {
-        reservationService.getReservations();
+    public ResponseEntity<List<ReservationResponseDto>> findAllWithDetails() {
+        List<ReservationResponseDto> reservationResponseDto = reservationService.findAllWithDetails();
+
+        return new ResponseEntity<>(reservationResponseDto, HttpStatus.OK);
     }
     
     @GetMapping("/search")

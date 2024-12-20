@@ -60,8 +60,7 @@ public class ReservationService {
      * 모든 예약 조회 API
      */
     // TODO: 3. N+1 문제
-    public List<ReservationResponseDto> getReservations() {
-//        List<Reservation> reservations = reservationRepository.findAll();
+    public List<ReservationResponseDto> findAllWithDetails() {
         List<Reservation> reservations = reservationRepository.findAllWithDetails();
 
         return reservations.stream().map(reservation -> {
